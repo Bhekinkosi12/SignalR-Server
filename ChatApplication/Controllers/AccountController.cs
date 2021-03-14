@@ -18,9 +18,7 @@ namespace ChatApplication.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
-        {
-        }
+       
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -179,7 +177,9 @@ namespace ChatApplication.Controllers
         {
             if (userId == null || code == null)
             {
+            
                 return View("Error");
+            
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
@@ -300,7 +300,9 @@ namespace ChatApplication.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
+        
         [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
